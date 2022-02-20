@@ -1,0 +1,24 @@
+{
+"type": "FeatureCollection",
+"name": "camaras-plaza-eliptica",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Nombre": "Vía Lusitana 56, lateral izquierdo" }, "geometry": { "type": "Point", "coordinates": [ -3.7256991003, 40.3809699719 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Vía Lusitana 56, calzada central" }, "geometry": { "type": "Point", "coordinates": [ -3.7252649218, 40.3806898103 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Vía Lusitana 56, lateral derecho" }, "geometry": { "type": "Point", "coordinates": [ -3.7251316065, 40.3806717273 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Avenida de Abrantes 15" }, "geometry": { "type": "Point", "coordinates": [ -3.7238013679, 40.383954865 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle Braganza 1" }, "geometry": { "type": "Point", "coordinates": [ -3.7217002247, 40.3851175569 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Avenida de Oporto 6" }, "geometry": { "type": "Point", "coordinates": [ -3.7196537063, 40.3852204022 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle Viana 3" }, "geometry": { "type": "Point", "coordinates": [ -3.7199411338, 40.3851059995 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle Évora esquina calle Santa Lucrecia" }, "geometry": { "type": "Point", "coordinates": [ -3.7182474055, 40.3867003293 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle de Antonio Leyva 88" }, "geometry": { "type": "Point", "coordinates": [ -3.7173887601, 40.3857236692 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Paseo de Santa María de la Cabeza esquina calle de Antonio Leyva" }, "geometry": { "type": "Point", "coordinates": [ -3.7172015415, 40.3857338396 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Carretera A-42 pk 3.900 sentido Madrid" }, "geometry": { "type": "Point", "coordinates": [ -3.7167685119, 40.3858950844 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Carretera A-42 pk 4.100 sentido Toledo" }, "geometry": { "type": "Point", "coordinates": [ -3.7178786575, 40.3844827803 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle Princesa Juana de Austria (A-42 pk 4.400 decrec.)" }, "geometry": { "type": "Point", "coordinates": [ -3.7184294197, 40.3822081685 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle Marcelo Usera 150" }, "geometry": { "type": "Point", "coordinates": [ -3.7123524476, 40.3851926369 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle San Filiberto esquina Calle Manuel Noya" }, "geometry": { "type": "Point", "coordinates": [ -3.7124516669, 40.3856641019 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle Juan Español 38" }, "geometry": { "type": "Point", "coordinates": [ -3.7127998138, 40.3863907915 ] } },
+{ "type": "Feature", "properties": { "Nombre": "Calle San Nicomedes esquina Calle Manuel Noya" }, "geometry": { "type": "Point", "coordinates": [ -3.7127129401, 40.3879850342 ] } }
+]
+}

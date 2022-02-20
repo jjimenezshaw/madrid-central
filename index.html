@@ -1,44 +1,129 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Madrid Central - OpenStreetMap</title>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Javier Jimenez Shaw">
 
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madrid Central - Zona de Bajas Emisiones de Especial Protección (ZBEDEP) - OpenStreetMap</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		#map {
-			width: 100%;
-			height: 100%;
-		}
-	</style>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
 
 <div id='map'></div>
 
-<script src="madrid-central-geojson.js" type="text/javascript"></script>
-
 <script>
-	var map = L.map('map').setView([40.4167853, -3.7036657], 15);
+    var map = L.map('map');
+    map.fitBounds([[40.4301864, -3.6896852], [40.3789424, -3.7266314]]);
 
-	L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-	}).addTo(map);
+    var ZBEDEP = ' | <a href="https://madrid.es">Madrid - ZBEDEP</a> | by <a href="https://javier.jimenezshaw.com" title="Javier Jiménez Shaw">JJS</a> - <a href="https://github.com/jjimenezshaw/madrid-central">GitHub</a>';
+    var attIgn = 'Maps &copy; <a href="http://www.scne.es/">CC BY 4.0 - Sistema Cartogr&aacute;fico Nacional</a>' + ZBEDEP;
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: 'Maps &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors' + ZBEDEP,
+    }).addTo(map);
+    osm.order = 1;
 
-    var url = 'https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=019f24aaef3d3610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default';
-    var central = L.geoJSON(madrid_central).addTo(map).bindPopup('<a href="' + url + '" target="_blank">Fuente: madrid.es</a><br>' +
-        'Las calles de libre circulación no están incluidas. Formato inválido en madrid.es');
-    map.fitBounds(central.getBounds());
+    var base = L.tileLayer('https://www.ign.es/wmts/ign-base?service=WMTS&request=GetTile&version=1.0.0&layer=IGNBaseTodo&tilematrix={z}&tilematrixset=GoogleMapsCompatible&tilerow={y}&tilecol={x}&format=image/jpeg&style=default', {
+        maxZoom: 19,
+        attribution: attIgn,
+    });
+    base.order = 2;
+
+    var pnoa = L.tileLayer('https://www.ign.es/wmts/pnoa-ma?service=WMTS&request=GetTile&version=1.0.0&layer=OI.OrthoimageCoverage&tilematrix={z}&tilematrixset=GoogleMapsCompatible&tilerow={y}&tilecol={x}&format=image/jpeg&style=default', {
+        maxZoom: 19,
+        attribution: attIgn,
+    });
+    pnoa.order = 3;
+
+    var basemaps = {
+        "OpenStreetMap": osm,
+        "Base IGN": base,
+        "PNOA (satélite)": pnoa
+    };
+
+    function sortFunction (layerA, layerB, nameA, nameB) {
+        return layerA.order - layerB.order;
+    }
+    var control = L.control.layers(basemaps, null, {sortLayers: true, sortFunction: sortFunction}).addTo(map);
+
+    var overlays = [
+        {
+            name: 'ZBEDEP Distrito Centro',
+            file: 'madrid-central.geojson',
+            url: 'https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=019f24aaef3d3610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default',
+            default: true
+        },
+        {
+            name: 'Calles de libre circulación',
+            file: 'calles-libre-circulacion.geojson',
+            color: 'green',
+            default: true
+        },
+        {
+            name: 'Cámaras Distrito Centro',
+            file: 'camaras.geojson',
+        },
+        {
+            name: 'ZBEDEP Plaza Elíptica',
+            file: 'plaza-eliptica.geojson',
+            url: 'https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bf1d65b38f03c710VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default',
+            default: true
+        },
+        {
+            name: 'Cámaras Plaza Elíptica',
+            file: 'camaras-plaza-eliptica.geojson',
+        },
+    ];
+
+    overlays.forEach((overlay, order) => {
+        fetch(overlay.file, {method: "GET"})
+            .then(response => response.json())
+            .then(data => {
+                var c = L.geoJSON(data, {
+                    style: function (feature) {
+                        if (overlay.url)
+                            return {fillOpacity: 0.1, interactive: false};
+                        else
+                            return {color: overlay.color || 'red', radius: '4'};
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                });
+                var name = overlay.name;
+                if (overlay.url) {
+                    name = '<a href="' + overlay.url + '" target="_blank" title="Fuente: madrid.es">' + overlay.name + '</a>';
+                } else {
+                    c.bindPopup(function (layer) {
+                       var txt = layer.feature.properties.title || layer.feature.properties.Nombre || layer.feature.properties.nombre;
+                       if (layer.feature.geometry.type === "Point") {
+                           var coordinates = `${layer.feature.geometry.coordinates[1]},${layer.feature.geometry.coordinates[0]}`;
+                           // https://developers.google.com/maps/documentation/urls/get-started#street-view-action
+                           txt += `<br><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${coordinates}" target="_blank">Street View</a>`;
+                       }
+                       return txt;
+                    });
+                }
+                c.order = order;
+                control.addOverlay(c, name);
+                if (overlay.default) c.addTo(map);
+            });
+    });
 </script>
 
 </body>

@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"name": "calles-libre-circulacion",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "nombre": "Calle Mártires de Alcalá" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.711957258587406, 40.430136939970438 ], [ -3.713925986834849, 40.427348478164511 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 2, "nombre": "Calle Santa Cruz de Marcenado (de Calle Serrano Jover a Calle Mártires de Alcalá)" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.714204930965958, 40.429941547444344 ], [ -3.712432497224971, 40.429487983869137 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 3, "nombre": "Calle Seminario de Nobles" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.713148182718817, 40.428453129109627 ], [ -3.7143096146704, 40.427949424479912 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 4, "nombre": "Avenida Gran Vía de San Francisco" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.711810936059524, 40.406976876275486 ], [ -3.713114290412378, 40.408704051808812 ], [ -3.713942668384185, 40.410423467695232 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 5, "nombre": "Calle Bailén" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.713956862614838, 40.410444736427401 ], [ -3.713572279431104, 40.415033391654674 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 6, "nombre": "Calle Algeciras" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.71812854080677, 40.411106309340887 ], [ -3.717107733026665, 40.411174044781347 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 7, "nombre": "Cuesta Ramón" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.713643764927273, 40.414361559691208 ], [ -3.715187294220372, 40.414344013401205 ], [ -3.715178214338398, 40.414805900958079 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 8, "nombre": "Calle Ventura Rodríguez (de Calle Princesa a Calle Duque de Liria)" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.713212933057796, 40.426315429243601 ], [ -3.712939836102704, 40.426586737271052 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 9, "nombre": "Calle Duque de Liria (de Calle Ventura Rodríguez a Calle Princesa)" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -3.712946892515779, 40.426593367606401 ], [ -3.713400506185296, 40.427041721650312 ], [ -3.713690227352472, 40.427021246703632 ] ] ] } }
+]
+}
